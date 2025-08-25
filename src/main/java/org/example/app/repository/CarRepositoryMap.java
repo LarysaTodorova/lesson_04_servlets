@@ -78,7 +78,14 @@ public class CarRepositoryMap implements CarRepository {
     @Override
     public Car update2(Car car) {
         // TODO Homework
-        return null;
+        if (car.getId() == null) {
+            System.out.println("Car with id " + car.getId() + " not found");
+            return null;
+        }
+
+        Car carForUpdate = dataBase.get(car.getId());
+        carForUpdate.setPrice(car.getPrice());
+        return carForUpdate;
     }
 
     @Override
