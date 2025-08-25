@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class CarServlet extends HttpServlet {
 
-    private CarRepository repository = new CarRepositoryMap();
+    private CarRepository repository = new CarRepositoryDB();
     ObjectMapper mapper = new ObjectMapper();
 
     //  GET http://localhost:8080/cars
