@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.example.app.model.Car;
 import org.example.app.repository.CarRepository;
 import org.example.app.repository.CarRepositoryDB;
+import org.example.app.repository.CarRepositoryHibernate;
 import org.example.app.repository.CarRepositoryMap;
 
 import java.io.IOException;
@@ -17,7 +18,7 @@ import java.util.Map;
 
 public class CarServlet extends HttpServlet {
 
-    private CarRepository repository = new CarRepositoryDB();
+    private CarRepository repository = new CarRepositoryHibernate();
     ObjectMapper mapper = new ObjectMapper();
 
     //  GET http://localhost:8080/cars
