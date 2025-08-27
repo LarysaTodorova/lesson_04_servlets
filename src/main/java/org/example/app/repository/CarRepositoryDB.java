@@ -46,7 +46,7 @@ public class CarRepositoryDB implements CarRepository {
         try (Connection connection = getConnection()) {
 
             // insert into car(brand, price, year) values ('Toyota', 35000, 2024);
-            String query = String.format("INSERT INTO car(brand, price, year) values (%s, %s, %d)",
+            String query = String.format("INSERT INTO car(brand, price, year) values ('%s', %s, %d)",
                     car.getBrand(), car.getPrice(), car.getYear());
 
             Statement statement = connection.createStatement();
