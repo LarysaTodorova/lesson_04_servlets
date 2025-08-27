@@ -16,9 +16,10 @@ public class CarRepositoryDB implements CarRepository {
 
         try {
             Class.forName(Constants.DB_DRIVER_PATH);
-
             String dbUrl = String.format("%s%s?user=%s&password=%s",
-                    Constants.DB_ADDRESS, DB_NAME, DB_USER, DB_PASSWORD);
+                    DB_ADDRESS, DB_NAME, DB_USER, DB_PASSWORD
+            );
+
 
             return DriverManager.getConnection(dbUrl);
 
@@ -80,7 +81,7 @@ public class CarRepositoryDB implements CarRepository {
 
             // пытаемся переключиться на первую колонку, если она есть - вернется true
             if (resultSet.next()) {
-                String brand = resultSet.getNString("brand");
+                String brand = resultSet.getString("brand");
                 BigDecimal price = resultSet.getBigDecimal("price");
                 int year = resultSet.getInt("year");
 
