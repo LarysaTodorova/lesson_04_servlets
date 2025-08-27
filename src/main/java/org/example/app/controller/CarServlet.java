@@ -18,13 +18,13 @@ import java.util.Map;
 
 public class CarServlet extends HttpServlet {
 
-    private CarRepository repository = new CarRepositoryHibernate();
+    private CarRepository repository = new CarRepositoryDB();
     ObjectMapper mapper = new ObjectMapper();
 
     //  GET http://localhost:8080/cars
     //  GET http://localhost:8080/cars?id=3 - один авто по id
 
-    // получение инфомации о cars -> метод GET
+    // получение информации о cars -> метод GET
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // cars -> должны вернуть все авто из БД
