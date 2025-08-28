@@ -64,7 +64,6 @@ public class CarRepositoryDB implements CarRepository {
             car.setId(id);
             return car;
 
-
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -114,8 +113,6 @@ public class CarRepositoryDB implements CarRepository {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
     @Override

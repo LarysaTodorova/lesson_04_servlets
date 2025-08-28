@@ -1,6 +1,7 @@
 package org.example.app.repository;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
 import org.example.app.model.Car;
 import org.hibernate.cfg.Configuration;
 
@@ -24,7 +25,18 @@ public class CarRepositoryHibernate implements CarRepository {
 
     @Override
     public Car save(Car car) {
-        return null;
+        EntityTransaction transaction = entityManager.getTransaction();
+
+        try {
+            transaction.begin();
+            entityManager.persist(car);
+            transaction.commit();
+            return car;
+
+        } catch (Exception e) {
+            if ( transaction.isActive()) transaction.rollback();
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -39,7 +51,8 @@ public class CarRepositoryHibernate implements CarRepository {
 
     @Override
     public void delete(long id) {
-
+        // TODO HOMEWORK
+        // EM.remove(car)
     }
 
     @Override
@@ -50,6 +63,7 @@ public class CarRepositoryHibernate implements CarRepository {
 
     @Override
     public Car update2(Car car) {
+        // TODO HOMEWORK
         return null;
     }
 
