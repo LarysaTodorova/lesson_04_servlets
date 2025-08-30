@@ -165,12 +165,14 @@ public class CarRepositoryDB implements CarRepository {
 
             String sql = "INSERT INTO car(brand, price, year) VALUES (?, ?, ?);";
 
-            PreparedStatement ps = connection.prepareCall(sql);
+            PreparedStatement ps = connection.prepareStatement(sql);
 
+            // Подставляем значения вместо ?
             ps.setString(1, car.getBrand());
             ps.setString(2, car.getPrice().toString());
             ps.setInt(3, car.getYear());
 
+            // int rowsInserted = ps.executeUpdate();
             ResultSet resultSet = ps.executeQuery();
 
         } catch (Exception e) {
