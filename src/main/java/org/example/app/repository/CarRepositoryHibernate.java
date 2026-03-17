@@ -24,7 +24,6 @@ public class CarRepositoryHibernate implements CarRepository {
 
     @Override
     public Car save(Car car) {
-        return null;
     }
 
     @Override
@@ -39,7 +38,6 @@ public class CarRepositoryHibernate implements CarRepository {
 
     @Override
     public void delete(long id) {
-
     }
 
     @Override

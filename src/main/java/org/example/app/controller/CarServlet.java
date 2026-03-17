@@ -18,13 +18,13 @@ import java.util.Map;
 
 public class CarServlet extends HttpServlet {
 
-    private CarRepository repository = new CarRepositoryHibernate();
+    private CarRepository repository = new CarRepositoryDB();
     ObjectMapper mapper = new ObjectMapper();
 
     //  GET http://localhost:8080/cars
     //  GET http://localhost:8080/cars?id=3 - один авто по id
 
-    // получение инфомации о cars -> метод GET
+    // получение информации о cars -> метод GET
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // cars -> должны вернуть все авто из БД
@@ -121,16 +121,45 @@ public class CarServlet extends HttpServlet {
 //            String jsonResponse = mapper.writeValueAsString(updatedCar);
 //            resp.getWriter().write(jsonResponse);
 //        }
+        // =========================================================
+
+//        resp.setContentType("application/json");
+//
+//        long id = Long.parseLong(req.getParameter("id"));
+//        String priceStr = req.getParameter("price");
+//
+//        Car updatedCar = repository.updateCar(id, new BigDecimal(priceStr));
+//
+//
+//        String json = mapper.writeValueAsString(updatedCar);
+//        resp.getWriter().write(json);
+
+        //========================================================
 
         resp.setContentType("application/json");
+        try {
+            long id = Long.parseLong(req.getParameter("id"));
+            String price = req.getParameter("price");
+            BigDecimal newPrice = new BigDecimal(price);
 
-        long id = Long.parseLong(req.getParameter("id"));
-        String priceStr = req.getParameter("price");
+            Car carToUpdate = new Car();
+            carToUpdate.setId(id);
+            carToUpdate.setPrice(newPrice);
 
-        Car updatedCar = repository.updateCar(id, new BigDecimal(priceStr));
+            Car updatedCar = repository.update2(carToUpdate);
 
-        String json = mapper.writeValueAsString(updatedCar);
-        resp.getWriter().write(json);
+            if (updatedCar == null) {
+                resp.getWriter().write("Car with id " + id + " not found");
+            } else {
+                String jsonResponse = mapper.writeValueAsString(updatedCar);
+                resp.getWriter().write(jsonResponse);
+            }
+
+        } catch (NumberFormatException e) {
+            resp.getWriter().write("Invalid id or price");
+        } catch (Exception e) {
+            resp.getWriter().write("Server error");
+        }
     }
 
     //DELETE/cars
