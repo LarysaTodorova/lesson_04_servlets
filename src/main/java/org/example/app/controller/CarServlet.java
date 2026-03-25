@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class CarServlet extends HttpServlet {
 
-    private CarRepository repository = new CarRepositoryDB();
+    private CarRepository repository = new CarRepositoryHibernate();
     ObjectMapper mapper = new ObjectMapper();
 
     //  GET http://localhost:8080/cars
@@ -30,10 +30,10 @@ public class CarServlet extends HttpServlet {
         // cars -> должны вернуть все авто из БД
 
         /*
-        request - это объект запроса. Из него мы можем извлечь все , что прислал клиент
-        response - это объект ответа, который будет отправлен клиенту , после того, как отработает наш код.
-        В объект response мы можем поместить всю информацию , которую мы хотим отправить клиенту,
-        в ответ на его запрос( request )
+        request - это объект запроса. Из него мы можем извлечь все, что прислал клиент
+        response - это объект ответа, который будет отправлен клиенту, после того, как отработает наш код.
+        В объект response мы можем поместить всю информацию, которую мы хотим отправить клиенту,
+        в ответ на его запрос(request)
          */
 
         //  /example?id=5&name=cat

@@ -41,7 +41,8 @@ public class CarRepositoryHibernate implements CarRepository {
 
     @Override
     public Car getById(Long id) {
-        return entityManager.find(Car.class, id);
+        Car foundCar = entityManager.find(Car.class, id);
+        return foundCar;
     }
 
     @Override
@@ -64,6 +65,7 @@ public class CarRepositoryHibernate implements CarRepository {
     @Override
     public Car update2(Car car) {
         // TODO HOMEWORK
+        // найти машину в БД, изменить цену и закомитить в транзакцию
         return null;
     }
 
